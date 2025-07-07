@@ -23,6 +23,10 @@
     <p>你選的是：{{ selectedAnswer }}</p>
   </div>
 
+  <div>
+    <CardView />
+  </div>
+
   <AppHeader :name="name" />
   <input type="text" v-model="name" /><br />
   <p></p>
@@ -33,10 +37,10 @@
   <AppInput v-model="inputName" />
   <p>inputName : {{ inputName }}</p>
 
-  <CardView>
-    <h2>Content from CardView</h2>
-    <!-- 這裡傳入 <h2> 標籤，元件就會顯示這個 <h2> 標籤 -->
-  </CardView>
+  <!-- <CardView> -->
+  <!-- <h2>Content from CardView</h2> -->
+  <!-- 這裡傳入 <h2> 標籤，元件就會顯示這個 <h2> 標籤 -->
+  <!-- </CardView> -->
 
   <button @click="show('tab1')">Test001</button>
   <button @click="show('tab2')">Test002</button>
