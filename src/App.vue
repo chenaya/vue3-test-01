@@ -1,5 +1,6 @@
 <!-- template：相關 html 標籤語法放置的地方 -->
 <template>
+  <div><BaseButton /></div>
   <!-- 而要把這個變數 message 顯示在 <template></template> 內的話，
     就必須要使用雙層大括號 {{ message }} -->
   <!-- {{ message }} -->
@@ -17,11 +18,12 @@
   <div v-for="(str, index) in lists" :key="str">
     <p v-if="str === 'abc'">{{ index }} {{ str }}</p>
   </div> -->
-  <div>
+
+  <!-- <div>
     <p>Question: 你喜歡哪個顏色？</p>
     <RadioButton v-model="selectedAnswer" :options="colorOptions" />
     <p>你選的是：{{ selectedAnswer }}</p>
-  </div>
+  </div> -->
 
   <div>
     <CardView />
@@ -86,7 +88,8 @@ import AppInput from "./components/AppInput.vue";
 import CardView from "./components/CardView.vue";
 import Test001 from "./components/Test001.vue";
 import Test002 from "./components/Test002.vue";
-import RadioButton from "./components/RadioButton.vue";
+// import RadioButton from "./components/RadioButton.vue";
+import BaseButton from "./components/BaseButton.vue";
 
 export default {
   //所有程式邏輯都必須要寫在 export default {} 裡頭
@@ -98,7 +101,8 @@ export default {
     CardView,
     Test001,
     Test002,
-    RadioButton,
+    // RadioButton,
+    BaseButton,
   },
   data() {
     //data() {} 是宣告變數的地方，在裡面使用 return 來輸出一個變數message

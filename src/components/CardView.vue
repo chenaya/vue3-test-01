@@ -21,37 +21,20 @@
         <img :src="cardImg" class="card-img-top" />
         <div class="card-body">
           <h4 class="card-title">Card title</h4>
-          <!-- 放radio button -->
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-
-      <div class="card" style="width: 18rem; border-color: green">
-        <img :src="cardImg" class="card-img-top" />
-        <div class="card-body">
-          <h4 class="card-title">Card title2</h4>
-          <!-- 放radio button -->
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-
-      <div class="card" style="width: 18rem; border-color: green">
-        <img :src="cardImg" class="card-img-top" />
-
-        <div class="card-body">
-          <h4 class="card-title">Card title3</h4>
-          <!-- 放radio button -->
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-
-      <div class="card" style="width: 18rem; border-color: green">
-        <img :src="cardImg" class="card-img-top" />
-
-        <div class="card-body">
-          <h4 class="card-title">Card title4</h4>
-          <!-- 放radio button -->
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div v-for="option in options" :key="option">
+            <a
+              href="#"
+              :class="[
+                'btn',
+                'btn-primary',
+                { selected: selectedOption === option },
+              ]"
+              @click.prevent="toggleOption(option)"
+            >
+              {{ option }}</a
+            >
+            <!-- class 陣列存放 靜態+動態 -->
+          </div>
         </div>
       </div>
     </div>
@@ -60,15 +43,27 @@
 
 <script>
 import cardImg from "../assets/001.png";
+
 export default {
   name: "CardView",
-  setup() {
-    return { cardImg };
+  data() {
+    return { cardImg, options: ["A", "B", "C"], selectedOption: null };
+  },
+  methods: {
+    toggleOption(option) {
+      console.log("觸發click");
+      if (this.selectedOption === option) {
+        // 如果已選中，再點一次取消選中
+        this.selectedOption = null;
+      } else {
+        this.selectedOption = option;
+      }
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .card {
   position: relative;
   display: flex;
@@ -102,5 +97,10 @@ export default {
   color: #fff;
   background-color: #0d6efd;
   border-color: #0d6efd;
+}
+
+.selected {
+  background-color: #42b983;
+  color: white;
 }
 </style>
