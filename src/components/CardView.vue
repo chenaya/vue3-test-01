@@ -18,7 +18,9 @@
       "
     >
       <div class="card" style="width: 18rem; border-color: green">
-        <img :src="cardImg" class="card-img-top" />
+        <div class="card-img">
+          <img :src="cardImg" class="card-img-top" />
+        </div>
         <div class="card-body">
           <h4 class="card-title">Card title</h4>
           <div v-for="option in options" :key="option">
@@ -42,12 +44,20 @@
 </template>
 
 <script>
-import cardImg from "../assets/001.png";
+import cardImg from "../assets/002.jpg";
 
 export default {
   name: "CardView",
   data() {
-    return { cardImg, options: ["A", "B", "C"], selectedOption: null };
+    return {
+      cardImg,
+      options: [
+        "Ajgcvlvmcvc;rojvghfoerejkpekcpejgcvlvmcvc;rojvghfoerejkpekcpejgcvlvmcvc;rojvghfoerejkpekcpejoi",
+        "B",
+        "C",
+      ],
+      selectedOption: null,
+    };
   },
   methods: {
     toggleOption(option) {
@@ -63,9 +73,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .card {
-  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -74,12 +83,23 @@ export default {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.card-img {
+  aspect-ratio: 1/1;
+  width: 100%;
+  /* height: 200px; */
+  overflow: hidden;
 }
 
 .card-img-top {
   width: 100%; /* 圖片寬度填滿卡片 */
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
+  height: 100%;
+  border-radius: 0.25rem;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
 }
 
 .btn {
@@ -91,6 +111,11 @@ export default {
   border-radius: 0.375rem;
   text-decoration: none;
   margin-bottom: 1rem;
+  max-width: 80%;
+  overflow-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn-primary {
