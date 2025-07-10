@@ -1,5 +1,12 @@
 <!-- template：相關 html 標籤語法放置的地方 -->
 <template>
+  <button @click="openModal">Modal example</button>
+  <Modal :show="showModal" @close="closeModal">
+    <div v-for="(c, index) in colorOptions.slice(0, 10)" :key="c.value">
+      <p>{{ index }}_{{ c.label }}</p>
+    </div>
+  </Modal>
+
   <div><BaseButton /></div>
   <!-- 而要把這個變數 message 顯示在 <template></template> 內的話，
     就必須要使用雙層大括號 {{ message }} -->
@@ -90,6 +97,7 @@ import Test001 from "./components/Test001.vue";
 import Test002 from "./components/Test002.vue";
 // import RadioButton from "./components/RadioButton.vue";
 import BaseButton from "./components/BaseButton.vue";
+import Modal from "./components/ModalView.vue";
 
 export default {
   //所有程式邏輯都必須要寫在 export default {} 裡頭
@@ -103,6 +111,7 @@ export default {
     Test002,
     // RadioButton,
     BaseButton,
+    Modal,
   },
   data() {
     //data() {} 是宣告變數的地方，在裡面使用 return 來輸出一個變數message
@@ -137,7 +146,17 @@ export default {
         { label: "紅色", value: "red" },
         { label: "綠色", value: "green" },
         { label: "藍色", value: "blue" },
+        { label: "紅色", value: "red" },
+        { label: "綠色", value: "green" },
+        { label: "藍色", value: "blue" },
+        { label: "紅色", value: "red" },
+        { label: "綠色", value: "green" },
+        { label: "藍色", value: "blue" },
+        { label: "紅色", value: "red" },
+        { label: "綠色", value: "green" },
+        { label: "藍色", value: "blue" },
       ],
+      showModal: false,
     };
   },
   // methods 與 computed 的差別:
@@ -159,6 +178,12 @@ export default {
     show(index) {
       // 按鈕按下會呼叫 show 這個函式，然後帶入參數會去更新變數 tab。
       this.tab = index;
+    },
+    openModal() {
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
     },
   },
   watch: {
